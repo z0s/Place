@@ -22,7 +22,7 @@ class PlaceCollectionViewController: UIViewController {
     
     var places  = [Place]()
     var apiManager = APIManager.shared
-
+    
     func applyGradient() {
         view.applyGradient([Colors.customGray, Colors.customDarkGray, .darkGray])
     }
@@ -44,6 +44,7 @@ class PlaceCollectionViewController: UIViewController {
     
     func setupCollectionView() {
         view.addSubview(collectionView)
+        collectionView.isPrefetchingEnabled = false
         collectionView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 5).isActive = true
         collectionView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -5).isActive = true
         collectionView.topAnchor.constraint(equalTo: view.topAnchor, constant: 0).isActive = true
@@ -72,7 +73,7 @@ class PlaceCollectionViewController: UIViewController {
 extension PlaceCollectionViewController: UICollectionViewDelegate {
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         let vc = PlaceDetailViewController()
-        vc.place = places[indexPath.row]
+        vc.place = places[indexPath.item]
         navigationController?.pushViewController(vc, animated: true)
         collectionView.deselectItem(at: indexPath, animated: true)
     }
@@ -86,16 +87,14 @@ extension PlaceCollectionViewController: UICollectionViewDataSource {
         guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: PlaceCollectionViewCell.reuseID, for: indexPath)  as? PlaceCollectionViewCell else {
             return UICollectionViewCell()
         }
-        let item = places[indexPath.row]
+        let item = places[indexPath.item]
         
-        if let imageURLString: String = item.url {
-            if let imageURL = URL(string: imageURLString) {
-                apiManager.requestImage(at: imageURL, completion: { (image) in
-                    if let image = image {
-                        cell.placeImageView.image = image
-                    }
-                })
-            }
+        if let imageURLString: String = item.url, let imageURL = URL(string: imageURLString) {
+            apiManager.requestImage(at: imageURL, completion: { (image) in
+                if let image = image, let visibleCell = collectionView.cellForItem(at: indexPath) as? PlaceCollectionViewCell {
+                    visibleCell.placeImageView.image = image
+                }
+            })
         }
         
         return cell

@@ -26,11 +26,11 @@ class APIManager {
         let task = session.dataTask(with: request) { (data, response, error) in
             
             
-//            func displayError(_ error: String) {
-//                print(error)
-//                print("URL at time of error: \(url)")
-//            }
-//            
+            //            func displayError(_ error: String) {
+            //                print(error)
+            //                print("URL at time of error: \(url)")
+            //            }
+            //
             guard error == nil else {
                 self.displayError("There was an error with your request: \(String(describing: error))", url: url)
                 return
@@ -68,9 +68,11 @@ class APIManager {
     }
     
     func requestImage(at imageURL: URL, completion: @escaping ((UIImage?) -> Void)) {
-        let imageDownloadTask = URLSession.shared.dataTask(with: imageURL, completionHandler: { (data, response, error) in
+        var request = URLRequest(url: imageURL)
+        request.cachePolicy = .returnCacheDataElseLoad
+        let imageDownloadTask = URLSession.shared.dataTask(with: request) { (data, response, error) in
             var image: UIImage? = nil
-
+            
             guard let statusCode = (response as? HTTPURLResponse)?.statusCode, statusCode >= 200 && statusCode <= 299 else {
                 self.displayError("Your request returned a status code other than 2xx!")
                 return
@@ -82,7 +84,8 @@ class APIManager {
             DispatchQueue.main.async {
                 completion(image)
             }
-        })
+        }
+        
         imageDownloadTask.resume()
     }
     
