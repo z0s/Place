@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		3D17C8761EE2794500A45294 /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D17C8751EE2794500A45294 /* Extensions.swift */; };
 		3D1C11841EE1ED410045644C /* PlaceDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D1C11831EE1ED410045644C /* PlaceDetailViewController.swift */; };
 		3D346D301EE0E3970025C62A /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D346D2F1EE0E3970025C62A /* AppDelegate.swift */; };
 		3D346D321EE0E3970025C62A /* PlaceCollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D346D311EE0E3970025C62A /* PlaceCollectionViewController.swift */; };
@@ -18,6 +19,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		3D17C8751EE2794500A45294 /* Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
 		3D1C11831EE1ED410045644C /* PlaceDetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PlaceDetailViewController.swift; sourceTree = "<group>"; };
 		3D346D2C1EE0E3970025C62A /* Place.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Place.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		3D346D2F1EE0E3970025C62A /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -69,6 +71,7 @@
 				3D346D431EE0E83E0025C62A /* PlaceCollectionViewCell.swift */,
 				3D346D451EE0E86C0025C62A /* Place.swift */,
 				3D1C11831EE1ED410045644C /* PlaceDetailViewController.swift */,
+				3D17C8751EE2794500A45294 /* Extensions.swift */,
 			);
 			path = Place;
 			sourceTree = "<group>";
@@ -151,6 +154,7 @@
 				3D1C11841EE1ED410045644C /* PlaceDetailViewController.swift in Sources */,
 				3D346D301EE0E3970025C62A /* AppDelegate.swift in Sources */,
 				3D346D461EE0E86C0025C62A /* Place.swift in Sources */,
+				3D17C8761EE2794500A45294 /* Extensions.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

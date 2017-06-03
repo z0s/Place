@@ -25,23 +25,24 @@ class APIManager {
         let request = URLRequest(url: url)
         let task = session.dataTask(with: request) { (data, response, error) in
             
-            func displayError(_ error: String) {
-                print(error)
-                print("URL at time of error: \(url)")
-            }
             
+//            func displayError(_ error: String) {
+//                print(error)
+//                print("URL at time of error: \(url)")
+//            }
+//            
             guard error == nil else {
-                displayError("There was an error with your request: \(String(describing: error))")
+                self.displayError("There was an error with your request: \(String(describing: error))", url: url)
                 return
             }
             
             guard let statusCode = (response as? HTTPURLResponse)?.statusCode, statusCode >= 200 && statusCode <= 299 else {
-                displayError("Your request returned a status code other than 2xx!")
+                self.displayError("Your request returned a status code other than 2xx!", url: url)
                 return
             }
             
             guard let data = data else {
-                displayError("No data was returned by the request!")
+                self.displayError("No data was returned by the request!", url: url)
                 return
             }
             
@@ -49,7 +50,7 @@ class APIManager {
             do {
                 parsedResult = try JSONSerialization.jsonObject(with: data, options: .allowFragments) as! [String:AnyObject]
             } catch {
-                displayError("Could not parae the data as JSON: '\(data)'")
+                self.displayError("Could not parae the data as JSON: '\(data)'", url: url)
                 return
             }
             
@@ -69,12 +70,9 @@ class APIManager {
     func requestImage(at imageURL: URL, completion: @escaping ((UIImage?) -> Void)) {
         let imageDownloadTask = URLSession.shared.dataTask(with: imageURL, completionHandler: { (data, response, error) in
             var image: UIImage? = nil
-            func displayError(_ error: String) {
-                print(error)
-            }
-            
+
             guard let statusCode = (response as? HTTPURLResponse)?.statusCode, statusCode >= 200 && statusCode <= 299 else {
-                displayError("Your request returned a status code other than 2xx!")
+                self.displayError("Your request returned a status code other than 2xx!")
                 return
             }
             
@@ -86,6 +84,11 @@ class APIManager {
             }
         })
         imageDownloadTask.resume()
+    }
+    
+    func displayError(_ error: String, url: URL? = nil) {
+        print(error)
+        print("URL at time of error: \(String(describing: url))")
     }
 }
 
