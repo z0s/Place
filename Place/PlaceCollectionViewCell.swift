@@ -29,6 +29,8 @@ class PlaceCollectionViewCell: UICollectionViewCell {
         placeImageView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor).isActive = true
         placeImageView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor).isActive = true
         placeImageView.bottomAnchor.constraint(equalTo: contentView.bottomAnchor).isActive = true
+        placeImageView.image = #imageLiteral(resourceName: "missing-image")
+        
     }
 
     lazy var placeImageView: UIImageView = {
