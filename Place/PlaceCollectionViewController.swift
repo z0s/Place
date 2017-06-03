@@ -12,12 +12,20 @@ class PlaceCollectionViewController: UIViewController {
     
     override func loadView() {
         view = UIView()
-        view.backgroundColor = UIColor(red:0.96, green:0.96, blue:0.98, alpha:1.0)
         setupViews()
     }
+    
+    override func viewWillLayoutSubviews() {
+        super.viewWillLayoutSubviews()
+        applyGradient()
+    }
+    
     var places  = [Place]()
     var apiManager = APIManager.shared
-    
+
+    func applyGradient() {
+        view.applyGradient([Colors.customGray, Colors.customDarkGray, .darkGray])
+    }
     func populateCollectionView() {
         apiManager.retrievePlaceObjects { (objects) in
             UIApplication.shared.isNetworkActivityIndicatorVisible = true
@@ -53,7 +61,7 @@ class PlaceCollectionViewController: UIViewController {
     lazy var collectionView: UICollectionView = {
         let collectionView = UICollectionView(frame: self.view.bounds, collectionViewLayout: self.layout)
         collectionView.translatesAutoresizingMaskIntoConstraints = false
-        collectionView.backgroundColor = UIColor(red:0.96, green:0.96, blue:0.98, alpha:1.0)
+        collectionView.backgroundColor = .clear
         collectionView.dataSource = self
         collectionView.delegate = self
         collectionView.register(PlaceCollectionViewCell.self, forCellWithReuseIdentifier: PlaceCollectionViewCell.reuseID)

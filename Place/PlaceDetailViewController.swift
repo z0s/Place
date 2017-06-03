@@ -17,6 +17,14 @@ class PlaceDetailViewController: UIViewController {
         view.backgroundColor = .white
         setupSubviews()
     }
+    
+    override func viewWillLayoutSubviews() {
+        super.viewWillLayoutSubviews()
+        applyGradient()
+    }
+    func applyGradient() {
+        view.applyGradient([Colors.customGray, Colors.customDarkGray, .darkGray])
+    }
 
     func setupSubviews() {
         setUpPlaceImage()
