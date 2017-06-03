@@ -43,6 +43,7 @@ class PlaceCollectionViewCell: UICollectionViewCell {
     }()
     override func prepareForReuse() {
         super.prepareForReuse()
+        placeImageView.image = nil
     }
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
