@@ -30,11 +30,22 @@ class PlaceCollectionViewController: UIViewController {
         apiManager.retrievePlaceObjects { (objects) in
             UIApplication.shared.isNetworkActivityIndicatorVisible = true
             self.places = objects
-            DispatchQueue.main.async {
-                UIApplication.shared.isNetworkActivityIndicatorVisible = false
-                self.collectionView.reloadData()
+            if self.places.count == 0 {
+                self.displayAlert()
+            } else {
+                DispatchQueue.main.async {
+                    UIApplication.shared.isNetworkActivityIndicatorVisible = false
+                    self.collectionView.reloadData()
+                }
             }
         }
+    }
+    
+    func displayAlert() {
+        let alert = UIAlertController(title: "No Internet", message: "Looks like you aren't connected to the internet at this time. Try again later!", preferredStyle: .alert)
+        let action = UIAlertAction(title: "OK", style: .default, handler: nil)
+        alert.addAction(action)
+        present(alert, animated: true, completion: nil)
     }
     
     func setupViews() {
