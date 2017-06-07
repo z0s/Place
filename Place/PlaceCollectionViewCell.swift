@@ -35,6 +35,7 @@ class PlaceCollectionViewCell: UICollectionViewCell {
     lazy var placeImageView: UIImageView = {
         let imageView = UIImageView()
         imageView.translatesAutoresizingMaskIntoConstraints = false
+        imageView.image = #imageLiteral(resourceName: "missing-image")
         imageView.contentMode = .scaleAspectFill
         imageView.clipsToBounds = true
         
