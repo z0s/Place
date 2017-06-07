@@ -24,25 +24,28 @@ class APIManager {
         }
         let request = URLRequest(url: url)
         let task = session.dataTask(with: request) { (data, response, error) in
-            
-            
-            //            func displayError(_ error: String) {
-            //                print(error)
-            //                print("URL at time of error: \(url)")
-            //            }
-            //
+
             guard error == nil else {
                 self.displayError("There was an error with your request: \(String(describing: error))", url: url)
+                DispatchQueue.main.async {
+                    completionHandler(placeResults)
+                }
                 return
             }
             
             guard let statusCode = (response as? HTTPURLResponse)?.statusCode, statusCode >= 200 && statusCode <= 299 else {
                 self.displayError("Your request returned a status code other than 2xx!", url: url)
+                DispatchQueue.main.async {
+                    completionHandler(placeResults)
+                }
                 return
             }
             
             guard let data = data else {
                 self.displayError("No data was returned by the request!", url: url)
+                DispatchQueue.main.async {
+                    completionHandler(placeResults)
+                }
                 return
             }
             
@@ -51,6 +54,9 @@ class APIManager {
                 parsedResult = try JSONSerialization.jsonObject(with: data, options: .allowFragments) as! [String:AnyObject]
             } catch {
                 self.displayError("Could not parae the data as JSON: '\(data)'", url: url)
+                DispatchQueue.main.async {
+                    completionHandler(placeResults)
+                }
                 return
             }
             
@@ -75,6 +81,9 @@ class APIManager {
             
             guard let statusCode = (response as? HTTPURLResponse)?.statusCode, statusCode >= 200 && statusCode <= 299 else {
                 self.displayError("Your request returned a status code other than 2xx!")
+                DispatchQueue.main.async {
+                    completion(image)
+                }
                 return
             }
             
