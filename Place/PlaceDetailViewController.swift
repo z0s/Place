@@ -14,7 +14,7 @@ class PlaceDetailViewController: UIViewController {
     
     override func loadView() {
         view = UIView()
-        view.backgroundColor = .white
+        view.backgroundColor = Colors.customDarkGray
         setupSubviews()
     }
     
@@ -23,7 +23,7 @@ class PlaceDetailViewController: UIViewController {
         applyGradient()
     }
     func applyGradient() {
-        view.applyGradient([Colors.customGray, Colors.customDarkGray, .darkGray])
+//        view.applyGradient([Colors.customGray, Colors.customDarkGray, .darkGray])
     }
 
     func setupSubviews() {

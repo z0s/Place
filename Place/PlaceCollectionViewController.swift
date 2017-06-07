@@ -12,6 +12,7 @@ class PlaceCollectionViewController: UIViewController {
     
     override func loadView() {
         view = UIView()
+        view.backgroundColor = Colors.customDarkGray
         setupViews()
     }
     
@@ -24,7 +25,7 @@ class PlaceCollectionViewController: UIViewController {
     var apiManager = APIManager.shared
     
     func applyGradient() {
-        view.applyGradient([Colors.customGray, Colors.customDarkGray, .darkGray])
+//        view.applyGradient([Colors.customGray, Colors.customDarkGray, .darkGray])
     }
     func populateCollectionView() {
         apiManager.retrievePlaceObjects { (objects) in
