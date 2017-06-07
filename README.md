@@ -8,4 +8,7 @@ This is a simple iOS application that returns the total number of places and res
 <br><b>Language:</b> Swift 3.0
 
 ## Questions?
-Send me an [email](mailto:zubair.asgar@gmail.com?subject=Challenge).
+Send me an [email](mailto:zubair.asgar@gmail.com?subject=FetchyFox-Challenge).
+
+![Video Walkthrough](Walkthrough.gif)
+
