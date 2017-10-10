@@ -1,7 +1,7 @@
 # Place
-## Fetchy Fox Exercise 
+## JSON Integration
 
-This is a simple iOS application that returns the total number of places and restuarants available on Fetchy Fox. The application utilizes a basic collection view and integrates the exercise Fetchy Fox API.
+This is a simple iOS application that returns the total number of places and restuarants available on RESTful API. The application utilizes a basic collection view and integrates the API.
 
 ## Development environment
 <b>IDE:</b> Xcode 8.0
